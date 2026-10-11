@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0E78B7" />
+      <stop offset="35%" stop-color="#129FE3" />
+      <stop offset="70%" stop-color="#4CB8EB" />
+      <stop offset="90%" stop-color="#84CEF5" />
+      <stop offset="100%" stop-color="#B2E2FB" />
+    </linearGradient>
+    <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.88" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.15" />
+    </linearGradient>
+    <linearGradient id="grassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2D7A1E" />
+      <stop offset="40%" stop-color="#1B5212" />
+      <stop offset="100%" stop-color="#0F330A" />
+    </linearGradient>
+    <filter id="blurSoft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="35" />
+    </filter>
+    <filter id="blurWispy" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18" />
+    </filter>
+  </defs>
+
+  <!-- Sky Base -->
+  <rect width="1600" height="900" fill="url(#skyGrad)" />
+
+  <!-- Atmospheric Glow -->
+  <circle cx="800" cy="280" r="500" fill="#FFFFFF" opacity="0.18" filter="url(#blurSoft)" />
+  <circle cx="1250" cy="180" r="380" fill="#BCE6FF" opacity="0.25" filter="url(#blurSoft)" />
+
+  <!-- Realistic Wispy Clouds -->
+  <!-- Top Left Cloud -->
+  <path d="M-80 180 Q100 80 280 160 T620 170 Q700 240 540 280 T180 270 Q20 280 -80 180 Z" fill="url(#cloudGrad)" filter="url(#blurWispy)" opacity="0.6" />
+  <path d="M-40 210 Q80 150 240 190 T510 220 Q440 260 210 260 Z" fill="#FFFFFF" filter="url(#blurWispy)" opacity="0.45" />
+
+  <!-- Mid Right Cloud Formation -->
+  <path d="M960 140 Q1180 60 1380 130 T1680 150 Q1620 260 1420 240 T1040 220 Q920 180 960 140 Z" fill="url(#cloudGrad)" filter="url(#blurWispy)" opacity="0.65" />
+  <path d="M1060 170 Q1220 110 1390 160 T1600 180 Q1460 230 1190 220 Z" fill="#FFFFFF" filter="url(#blurWispy)" opacity="0.5" />
+
+  <!-- Lower Ambient Cloud Layer -->
+  <path d="M120 420 Q380 340 680 390 T1200 370 Q1480 340 1680 430 Q1600 520 1280 480 T640 500 Q260 520 120 420 Z" fill="#FFFFFF" filter="url(#blurSoft)" opacity="0.32" />
+
+  <!-- Bottom Meadow Field / Grass Base -->
+  <rect x="0" y="760" width="1600" height="140" fill="url(#grassGrad)" />
+
+  <!-- Layered Blades of Grass (Rich Foreground Horizon) -->
+  <path d="M0 760 Q80 735 160 760 T320 740 T480 755 T640 738 T800 752 T960 736 T1120 750 T1280 735 T1440 755 T1600 740 L1600 900 L0 900 Z" fill="#205E15" opacity="0.9" />
+  <path d="M0 780 Q90 755 180 778 T360 760 T540 775 T720 758 T900 772 T1080 756 T1260 770 T1440 755 T1600 765 L1600 900 L0 900 Z" fill="#17490F" />
+  
+  <!-- Fine grass silhouette stems for crisp photo-like edge -->
+  <g stroke="#3A9428" stroke-width="2.5" stroke-linecap="round" opacity="0.75">
+    <line x1="40" y1="770" x2="45" y2="720" />
+    <line x1="75" y1="775" x2="88" y2="725" />
+    <line x1="120" y1="765" x2="115" y2="715" />
+    <line x1="180" y1="770" x2="195" y2="718" />
+    <line x1="240" y1="760" x2="235" y2="710" />
+    <line x1="310" y1="770" x2="322" y2="722" />
+    <line x1="390" y1="765" x2="385" y2="715" />
+    <line x1="460" y1="775" x2="475" y2="726" />
+    <line x1="530" y1="760" x2="525" y2="712" />
+    <line x1="610" y1="770" x2="626" y2="720" />
+    <line x1="690" y1="765" x2="685" y2="718" />
+    <line x1="770" y1="775" x2="788" y2="724" />
+    <line x1="840" y1="760" x2="835" y2="715" />
+    <line x1="920" y1="770" x2="936" y2="722" />
+    <line x1="1000" y1="765" x2="995" y2="716" />
+    <line x1="1080" y1="775" x2="1098" y2="725" />
+    <line x1="1150" y1="760" x2="1145" y2="714" />
+    <line x1="1230" y1="770" x2="1246" y2="722" />
+    <line x1="1310" y1="765" x2="1305" y2="715" />
+    <line x1="1390" y1="775" x2="1408" y2="726" />
+    <line x1="1470" y1="760" x2="1465" y2="716" />
+    <line x1="1540" y1="770" x2="1556" y2="724" />
+  </g>
+</svg>

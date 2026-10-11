@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 625" width="100%" height="100%">
+  <defs>
+    <linearGradient id="t2Sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#129FE3" />
+      <stop offset="60%" stop-color="#5EBEEC" />
+      <stop offset="100%" stop-color="#B2E0FA" />
+    </linearGradient>
+    <linearGradient id="t2Skin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8C39E" />
+      <stop offset="100%" stop-color="#C99870" />
+    </linearGradient>
+  </defs>
+  <rect width="500" height="625" fill="url(#t2Sky)" />
+  <circle cx="160" cy="180" r="130" fill="#FFFFFF" opacity="0.22" filter="blur(22px)" />
+  <!-- David Carter (Retail Investor in hoodie with glasses) -->
+  <!-- Dark Hoodie -->
+  <path d="M110 625 C110 490 170 420 250 410 C330 420 390 490 390 625 Z" fill="#181E24" />
+  <path d="M210 420 Q250 470 290 420" stroke="#333C48" stroke-width="6" fill="none" />
+  <!-- Neck -->
+  <rect x="228" y="340" width="44" height="80" rx="8" fill="url(#t2Skin)" />
+  <!-- Head -->
+  <ellipse cx="250" cy="275" rx="60" ry="72" fill="url(#t2Skin)" />
+  <!-- Short hair -->
+  <path d="M190 270 C190 200 240 185 310 195 C315 220 310 260 305 275 C290 215 270 205 230 215 C205 220 195 245 190 270 Z" fill="#2B2625" />
+  <!-- Glasses -->
+  <rect x="210" y="250" width="34" height="24" rx="6" fill="none" stroke="#080D16" stroke-width="4" />
+  <rect x="256" y="250" width="34" height="24" rx="6" fill="none" stroke="#080D16" stroke-width="4" />
+  <line x1="244" y1="260" x2="256" y2="260" stroke="#080D16" stroke-width="4" />
+  <!-- Smile -->
+  <path d="M232 295 Q250 310 268 295" stroke="#87513A" stroke-width="3" stroke-linecap="round" fill="none" />
+</svg>

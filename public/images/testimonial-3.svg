@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 625" width="100%" height="100%">
+  <defs>
+    <linearGradient id="t3Sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#129FE3" />
+      <stop offset="60%" stop-color="#55BEEF" />
+      <stop offset="100%" stop-color="#AEE1FA" />
+    </linearGradient>
+    <linearGradient id="t3Skin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A86E49" />
+      <stop offset="100%" stop-color="#824E2E" />
+    </linearGradient>
+  </defs>
+  <rect width="500" height="625" fill="url(#t3Sky)" />
+  <circle cx="340" cy="190" r="150" fill="#FFFFFF" opacity="0.22" filter="blur(25px)" />
+  <!-- Priya Nair (Freelance Designer) -->
+  <path d="M100 625 C100 480 170 410 250 400 C330 410 400 480 400 625 Z" fill="#2E4A5C" />
+  <rect x="228" y="325" width="44" height="85" rx="8" fill="url(#t3Skin)" />
+  <ellipse cx="250" cy="270" rx="58" ry="70" fill="url(#t3Skin)" />
+  <!-- Long dark hair -->
+  <path d="M185 270 C180 160 230 145 315 155 C335 190 335 320 330 380 C310 280 295 240 250 238 C205 240 190 280 185 360 Z" fill="#181310" />
+  <!-- Gentle features -->
+  <path d="M234 295 Q250 310 266 295" stroke="#63371F" stroke-width="3" stroke-linecap="round" fill="none" />
+  <ellipse cx="230" cy="254" rx="4" ry="3" fill="#181310" />
+  <ellipse cx="270" cy="254" rx="4" ry="3" fill="#181310" />
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="ctaSkyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0D72AE" />
+      <stop offset="40%" stop-color="#129FE3" />
+      <stop offset="75%" stop-color="#55BEEF" />
+      <stop offset="92%" stop-color="#8CD3F7" />
+      <stop offset="100%" stop-color="#BEE7FD" />
+    </linearGradient>
+    <linearGradient id="ctaCloudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.2" />
+    </linearGradient>
+    <linearGradient id="ctaGrassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2D7A1E" />
+      <stop offset="50%" stop-color="#1B5212" />
+      <stop offset="100%" stop-color="#0F330A" />
+    </linearGradient>
+    <filter id="ctaBlurSoft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="30" />
+    </filter>
+  </defs>
+
+  <!-- Sky Base -->
+  <rect width="1600" height="700" fill="url(#ctaSkyGrad)" />
+
+  <!-- Cloud Layers -->
+  <path d="M1400 120 Q1200 40 1020 100 T680 110 Q600 180 760 210 T1120 200 Q1280 210 1400 120 Z" fill="url(#ctaCloudGrad)" filter="url(#ctaBlurSoft)" opacity="0.6" />
+  <path d="M-60 90 Q160 20 380 80 T720 100 Q650 180 420 170 T100 160 Z" fill="url(#ctaCloudGrad)" filter="url(#ctaBlurSoft)" opacity="0.5" />
+
+  <!-- Grass Base -->
+  <rect x="0" y="580" width="1600" height="120" fill="url(#ctaGrassGrad)" />
+  <path d="M0 580 Q80 555 160 580 T320 560 T480 575 T640 558 T800 572 T960 556 T1120 570 T1280 555 T1440 575 T1600 560 L1600 700 L0 700 Z" fill="#205E15" opacity="0.9" />
+  <path d="M0 600 Q90 575 180 598 T360 580 T540 595 T720 578 T900 592 T1080 576 T1260 590 T1440 575 T1600 585 L1600 700 L0 700 Z" fill="#17490F" />
+</svg>
