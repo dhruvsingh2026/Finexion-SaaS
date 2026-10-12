@@ -5,9 +5,10 @@ import { PRICING_DATA } from '../data/pricing'
 
 interface PricingProps {
   onDemoAction: (msg: string) => void
+  onOpenAuth?: (mode: 'login' | 'signup', plan?: 'Starter' | 'Pro' | 'Enterprise') => void
 }
 
-export const Pricing: React.FC<PricingProps> = ({ onDemoAction }) => {
+export const Pricing: React.FC<PricingProps> = ({ onDemoAction, onOpenAuth }) => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly')
 
   return (
@@ -138,14 +139,26 @@ export const Pricing: React.FC<PricingProps> = ({ onDemoAction }) => {
                 <div>
                   {plan.isPopular ? (
                     <button
-                      onClick={() => onDemoAction(`Selected Pro plan with ${billingCycle} billing (Demo only)`)}
+                      onClick={() => {
+                        if (onOpenAuth) {
+                          onOpenAuth('signup', 'Pro')
+                        } else {
+                          onDemoAction(`Selected Pro plan with ${billingCycle} billing`)
+                        }
+                      }}
                       className="w-full bg-[#D8FF4F] hover:brightness-105 text-[#080D16] font-bold text-sm py-3.5 rounded-2xl transition-all shadow-md active:scale-98 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#080D16]"
                     >
                       {plan.cta}
                     </button>
                   ) : (
                     <button
-                      onClick={() => onDemoAction(`Selected ${plan.name} plan (Demo only)`)}
+                      onClick={() => {
+                        if (onOpenAuth) {
+                          onOpenAuth('signup', plan.name as 'Starter' | 'Pro' | 'Enterprise')
+                        } else {
+                          onDemoAction(`Selected ${plan.name} plan`)
+                        }
+                      }}
                       className="w-full bg-[#080D16] hover:bg-black text-white font-semibold text-sm py-3.5 rounded-2xl transition-all shadow-xs active:scale-98 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#080D16]"
                     >
                       {plan.cta}

@@ -5,9 +5,15 @@ import { HERO_DATA } from '../data/hero'
 
 interface HeroProps {
   onDemoAction: (msg: string) => void
+  onOpenAuth?: (mode: 'login' | 'signup') => void
+  onOpenAccount?: () => void
 }
 
-export const Hero: React.FC<HeroProps> = ({ onDemoAction }) => {
+export const Hero: React.FC<HeroProps> = ({
+  onDemoAction,
+  onOpenAuth,
+  onOpenAccount,
+}) => {
   const { savingsCard, transactionsCard } = HERO_DATA
 
   return (
@@ -26,7 +32,11 @@ export const Hero: React.FC<HeroProps> = ({ onDemoAction }) => {
         <div className="absolute inset-0 hero-photo-scrim pointer-events-none" />
 
         {/* Floating Capsule Header */}
-        <Header onDemoAction={onDemoAction} />
+        <Header
+          onDemoAction={onDemoAction}
+          onOpenAuth={onOpenAuth}
+          onOpenAccount={onOpenAccount}
+        />
 
         {/* Hero Copy & Headline Container */}
         <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 text-center flex flex-col items-center">
@@ -54,13 +64,19 @@ export const Hero: React.FC<HeroProps> = ({ onDemoAction }) => {
 
           {/* CTAs Side by Side */}
           <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3.5 sm:gap-4">
-            <a
-              href="#pricing"
+            <button
+              onClick={() => {
+                if (onOpenAuth) {
+                  onOpenAuth('signup')
+                } else {
+                  onDemoAction('Get Started: Sign Up modal launched')
+                }
+              }}
               className="bg-[#D8FF4F] text-[#080D16] font-semibold text-sm sm:text-base px-6 sm:px-7 py-3 rounded-full hover:brightness-105 transition-all shadow-md hover:shadow-lg flex items-center gap-2 group cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               <span>{HERO_DATA.ctaPrimary.label}</span>
               <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
-            </a>
+            </button>
 
             <button
               onClick={() => onDemoAction('Interactive Demo tour: Watch how Finexa automatically categorises your transactions.')}

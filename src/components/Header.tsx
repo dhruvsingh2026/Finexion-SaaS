@@ -1,16 +1,25 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { FinexaLogo } from './FinexaLogo'
 import { NAV_ITEMS } from '../data/nav'
+import { useAuthStore } from '../store/authStore'
 
 interface HeaderProps {
   onDemoAction: (msg: string) => void
+  onOpenAuth?: (mode: 'login' | 'signup') => void
+  onOpenAccount?: () => void
 }
 
-export const Header: React.FC<HeaderProps> = ({ onDemoAction }) => {
+export const Header: React.FC<HeaderProps> = ({
+  onDemoAction,
+  onOpenAuth,
+  onOpenAccount,
+}) => {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
+
+  const { user, isAuthenticated, logout } = useAuthStore()
 
   // Close dropdown on outside click or escape
   useEffect(() => {
@@ -37,6 +46,22 @@ export const Header: React.FC<HeaderProps> = ({ onDemoAction }) => {
       document.removeEventListener('keydown', handleKeyDown)
     }
   }, [])
+
+  const handleLoginClick = () => {
+    if (onOpenAuth) {
+      onOpenAuth('login')
+    } else {
+      onDemoAction('Opening Login dialog')
+    }
+  }
+
+  const handleSignupClick = () => {
+    if (onOpenAuth) {
+      onOpenAuth('signup')
+    } else {
+      onDemoAction('Opening Sign Up dialog')
+    }
+  }
 
   return (
     <header className="w-full relative z-40 pt-4 px-4 sm:px-6">
@@ -120,20 +145,49 @@ export const Header: React.FC<HeaderProps> = ({ onDemoAction }) => {
             })}
           </nav>
 
-          {/* Desktop Right Actions: Login & Sign Up */}
-          <div className="hidden md:flex items-center gap-4">
-            <button
-              onClick={() => onDemoAction('Demo login: all features are already unlocked!')}
-              className="text-sm font-medium text-[#303640] hover:text-[#080D16] px-2 py-1 transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[#080D16] rounded-sm"
-            >
-              Login
-            </button>
-            <button
-              onClick={() => onDemoAction('Welcome to Finexa Demo! You have full access to all sample plans.')}
-              className="bg-[#080D16] text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-black transition-all hover:shadow-md cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#080D16]"
-            >
-              Sign Up
-            </button>
+          {/* Desktop Right Actions: Login & Sign Up OR Logged In Profile */}
+          <div className="hidden md:flex items-center gap-3">
+            {isAuthenticated && user ? (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={onOpenAccount}
+                  className="flex items-center gap-2 bg-[#F5F6F7] hover:bg-[#EAEFF4] border border-black/8 px-3.5 py-1.5 rounded-full transition-all text-xs font-semibold text-[#080D16] cursor-pointer"
+                >
+                  <span className="w-6 h-6 rounded-full bg-[#080D16] text-[#D8FF4F] flex items-center justify-center text-[10px] font-bold">
+                    {user.avatar || 'AV'}
+                  </span>
+                  <span>{user.name}</span>
+                  <span className="text-[10px] text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded-md font-bold">
+                    ${user.balance.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                  </span>
+                </button>
+                <button
+                  onClick={() => {
+                    logout()
+                    onDemoAction('Signed out successfully.')
+                  }}
+                  title="Sign Out"
+                  className="text-xs text-[#5B6470] hover:text-rose-600 px-2 py-1 transition-colors cursor-pointer"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <>
+                <button
+                  onClick={handleLoginClick}
+                  className="text-sm font-medium text-[#303640] hover:text-[#080D16] px-2.5 py-1 transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[#080D16] rounded-sm"
+                >
+                  Login
+                </button>
+                <button
+                  onClick={handleSignupClick}
+                  className="bg-[#080D16] text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-black transition-all hover:shadow-md cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#080D16]"
+                >
+                  Sign Up
+                </button>
+              </>
+            )}
           </div>
 
           {/* Mobile Hamburger Button */}
@@ -175,25 +229,60 @@ export const Header: React.FC<HeaderProps> = ({ onDemoAction }) => {
                 </a>
               ))}
             </div>
+            
             <div className="flex flex-col gap-2 pt-1">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false)
-                  onDemoAction('Demo login: all features are already unlocked!')
-                }}
-                className="w-full text-center py-2.5 rounded-xl text-sm font-medium text-[#303640] hover:bg-[#F5F6F7]"
-              >
-                Login
-              </button>
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false)
-                  onDemoAction('Welcome to Finexa Demo! You have full access to all sample plans.')
-                }}
-                className="w-full text-center py-3 rounded-full text-sm font-semibold bg-[#080D16] text-white hover:bg-black"
-              >
-                Sign Up
-              </button>
+              {isAuthenticated && user ? (
+                <>
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false)
+                      onOpenAccount?.()
+                    }}
+                    className="w-full text-left p-3 rounded-2xl bg-[#F5F6F7] flex items-center justify-between"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="w-7 h-7 rounded-full bg-[#080D16] text-[#D8FF4F] flex items-center justify-center text-xs font-bold">
+                        {user.avatar || 'AV'}
+                      </span>
+                      <span className="font-semibold text-xs text-[#080D16]">{user.name}</span>
+                    </div>
+                    <span className="text-xs font-bold text-emerald-700">
+                      ${user.balance.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                    </span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false)
+                      logout()
+                      onDemoAction('Signed out successfully.')
+                    }}
+                    className="w-full text-center py-2 text-xs font-semibold text-rose-600 hover:bg-rose-50 rounded-xl"
+                  >
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false)
+                      handleLoginClick()
+                    }}
+                    className="w-full text-center py-2.5 rounded-xl text-sm font-medium text-[#303640] hover:bg-[#F5F6F7]"
+                  >
+                    Login
+                  </button>
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false)
+                      handleSignupClick()
+                    }}
+                    className="w-full text-center py-3 rounded-full text-sm font-semibold bg-[#080D16] text-white hover:bg-black"
+                  >
+                    Sign Up
+                  </button>
+                </>
+              )}
             </div>
           </div>
         )}

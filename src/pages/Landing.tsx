@@ -11,12 +11,28 @@ import { FAQ } from '../components/FAQ'
 import { FinalCTA } from '../components/FinalCTA'
 import { Footer } from '../components/Footer'
 import { Toast } from '../components/Toast'
+import { AuthModal } from '../components/AuthModal'
+import { AccountModal } from '../components/AccountModal'
 
 export default function Landing() {
   const [toastMessage, setToastMessage] = useState<string | null>(null)
+  const [authModalOpen, setAuthModalOpen] = useState(false)
+  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login')
+  const [authPlan, setAuthPlan] = useState<'Starter' | 'Pro' | 'Enterprise'>('Pro')
+  const [accountModalOpen, setAccountModalOpen] = useState(false)
 
   const handleDemoAction = (msg: string) => {
     setToastMessage(msg)
+  }
+
+  const handleOpenAuth = (mode: 'login' | 'signup', plan: 'Starter' | 'Pro' | 'Enterprise' = 'Pro') => {
+    setAuthMode(mode)
+    setAuthPlan(plan)
+    setAuthModalOpen(true)
+  }
+
+  const handleOpenAccount = () => {
+    setAccountModalOpen(true)
   }
 
   return (
@@ -32,7 +48,11 @@ export default function Landing() {
       {/* Main Semantic Landmark */}
       <main id="main-content">
         {/* Section 1 — Header + Hero */}
-        <Hero onDemoAction={handleDemoAction} />
+        <Hero
+          onDemoAction={handleDemoAction}
+          onOpenAuth={handleOpenAuth}
+          onOpenAccount={handleOpenAccount}
+        />
 
         {/* Section 2 — Brand introduction */}
         <Intro />
@@ -53,7 +73,10 @@ export default function Landing() {
         <Testimonials onDemoAction={handleDemoAction} />
 
         {/* Section 8 — Simple and Transparent Pricing */}
-        <Pricing onDemoAction={handleDemoAction} />
+        <Pricing
+          onDemoAction={handleDemoAction}
+          onOpenAuth={handleOpenAuth}
+        />
 
         {/* Section 9 — Frequently Asked Questions */}
         <FAQ onDemoAction={handleDemoAction} />
@@ -64,6 +87,23 @@ export default function Landing() {
 
       {/* Section 11 — Dark footer */}
       <Footer onDemoAction={handleDemoAction} />
+
+      {/* Interactive Auth Modal (Sign Up & Log In) */}
+      <AuthModal
+        key={authModalOpen ? `${authMode}-${authPlan}` : 'auth-modal'}
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        initialMode={authMode}
+        initialPlan={authPlan}
+        onSuccessToast={handleDemoAction}
+      />
+
+      {/* Interactive Account & Wallet Modal */}
+      <AccountModal
+        isOpen={accountModalOpen}
+        onClose={() => setAccountModalOpen(false)}
+        onToast={handleDemoAction}
+      />
 
       {/* Interactive Toast Notifications */}
       <Toast message={toastMessage} onClose={() => setToastMessage(null)} />
