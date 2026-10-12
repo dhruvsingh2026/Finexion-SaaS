@@ -17,8 +17,8 @@ export const WorldMap: React.FC = () => {
             <circle cx="8" cy="8" r="1.5" fill="#129FE3" opacity="0.65" />
           </pattern>
           <radialGradient id="mapFade" cx="50%" cy="50%" r="50%">
-            <stop offset="60%" stop-color="#fff" stop-opacity="1" />
-            <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+            <stop offset="60%" stopColor="#fff" stopOpacity="1" />
+            <stop offset="100%" stopColor="#fff" stopOpacity="0" />
           </radialGradient>
           <mask id="mapMask">
             <rect width="1000" height="480" fill="url(#mapFade)" />

@@ -104,8 +104,8 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
             <svg viewBox="0 0 260 48" className="w-full h-11" fill="none">
               <defs>
                 <linearGradient id="chartG" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#D8FF4F" stop-opacity="0.4" />
-                  <stop offset="100%" stop-color="#D8FF4F" stop-opacity="0.0" />
+                  <stop offset="0%" stopColor="#D8FF4F" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#D8FF4F" stopOpacity="0.0" />
                 </linearGradient>
               </defs>
               <path

@@ -26,9 +26,9 @@ export const FinexaLogo: React.FC<FinexaLogoProps> = ({
   }[size]
 
   return (
-    <div className={`inline-flex items-center gap-2.5 font-semibold tracking-tight select-none ${className}`}>
+    <span className={`inline-flex items-center gap-2.5 font-semibold tracking-tight select-none ${className}`}>
       {/* Lime Rounded-Square Mark with Dark Arrow */}
-      <div
+      <span
         className={`${markDimensions} bg-[#D8FF4F] flex items-center justify-center shrink-0 shadow-xs transition-transform hover:scale-105`}
         aria-hidden="true"
       >
@@ -44,13 +44,13 @@ export const FinexaLogo: React.FC<FinexaLogoProps> = ({
           <line x1="7" y1="17" x2="17" y2="7" />
           <polyline points="7 7 17 7 17 17" />
         </svg>
-      </div>
+      </span>
 
       {!markOnly && (
         <span className={`${textSize} ${textColor} font-semibold font-body tracking-tight`}>
           Finexa
         </span>
       )}
-    </div>
+    </span>
   )
 }
